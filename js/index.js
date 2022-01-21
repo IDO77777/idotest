@@ -5,10 +5,10 @@ function run() {
   miro.initialize({
     extensionPoints: {
       toolBar: {
-        title: 'Dropper',
+        title: 'Dropper2',
         svgIcon: icon24,
         onClick: () => {
-          miro.board.ui.openLibrary('content.html', {title: 'Dropper'})
+          miro.board.ui.openLibrary('content.html', {title: 'Dropper2'})
         },
       },
       getWidgetMenuItems: () => {
