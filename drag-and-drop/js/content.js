@@ -51,7 +51,8 @@ const images = [
 
 function getImage(img) {
   return `<div class="draggable-item image-box">
-						<img src="${img.src}" data-image-url="https://realtimeboard.com/api/awesome-plugins/plugins/rtb_sticker_pack/${img.src}">
+						//<img src="${img.src}" data-image-url="https://realtimeboard.com/api/awesome-plugins/plugins/rtb_sticker_pack/${img.src}">
+						<img src="${img.src}" data-image-url="https://github.com/IDO77777/idotest/blob/069bdf5a579db6e90b284dda2b8a3e560b22b399/drag-and-drop/${img.src}">
 			</div>`
 }
 
