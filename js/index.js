@@ -13,8 +13,10 @@ function run() {
         },*/
       toolbar: {
         title: 'Dropper',
-        librarySvgIcon: icon24,
-        toolbarSvgIcon: icon24,
+//         librarySvgIcon: icon24,
+//         toolbarSvgIcon: icon24,
+        librarySvgIcon: <image href="https://ido77777.github.io/idotest/img/Asset_1.svg" height="20" width="20"/>,
+        toolbarSvgIcon: 'https://ido77777.github.io/idotest/img/Asset_1.svg',
         onClick: () => {
           miro.board.ui.openLibrary('content.html', {title: 'Dropper'})
         }, 
