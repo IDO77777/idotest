@@ -57,14 +57,14 @@ function getImage(img) {
 
 function addShapes(container) {
   container.innerHTML += `<div class="shape draggable-item organization"
-                               data-color="ffffff"
-			       shape-type=16
+                               data-color="ffffff" //白
+			       shape-type=7 //ROUNDER:角が丸い四角形
 			       shape-opacity=1>
 			       組織
 			  </div>
                           <div class="shape draggable-item process"
-			       data-color="d3d3d3"
-			       shape-type=16
+			       data-color="d3d3d3" //灰色
+			       shape-type=7 //ROUNDER:角が丸い四角形
 			       shape-opacity=0.2>
 			       工程
 			  </div>`
@@ -93,7 +93,8 @@ function createShape(canvasX, canvasY, color, text, stype, sopacity) {
       textColor: '#fff',
       backgroundColor: '#' + color,
       backgroundOpacity: sopacity,
-      borderColor: 'transparent',
+      borderColor: 'black', //'transparent',
+      textColor: 'black',
       shapeType: stype,
     },
   })
@@ -130,6 +131,8 @@ function bootstrap() {
 
   let currentShapeColor
   let currentShapeText
+  let currentShapeType
+  let currentShapeOpacity
   const shapeOptions = {
     draggableItemSelector: '.shape',
     onClick: async (targetElement) => {
@@ -143,13 +146,15 @@ function bootstrap() {
     getDraggableItemPreview: (targetElement) => {
       currentShapeColor = targetElement.getAttribute('data-color')
       currentShapeText = targetElement.innerText
+      currentShapeType = targetElement.getAttribute('shape-type')
+      currentShapeOpacity = targetElement.getAttribute('shape-opacity')
       return {
         url: `data:image/svg+xml,%3Csvg width='140' height='140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Crect stroke='null' x='0' y='0' fill='%23${currentShapeColor}' height='140' width='140'/%3E%3C/g%3E%3C/svg%3E`,
       }
     },
     onDrop: (canvasX, canvasY) => {
       console.log('onDrop 2')
-      createShape(canvasX, canvasY, currentShapeColor, currentShapeText)
+      createShape(canvasX, canvasY, currentShapeColor, currentShapeText, currentShapeType, currentShapeOpacity)
     },
   }
   miro.board.ui.initDraggableItemsContainer(container, shapeOptions)
