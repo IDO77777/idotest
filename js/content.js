@@ -59,7 +59,7 @@ function addShapes(container) {
   container.innerHTML += `<div class="shape draggable-item organization"
                                data-color="ffffff"
 			       shape-type=16
-			       shape-opacity=0.2>
+			       shape-opacity=1>
 			       組織
 			  </div>
                           <div class="shape draggable-item process"
