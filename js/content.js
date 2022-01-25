@@ -1,6 +1,9 @@
-const images = [
+const lines = [
   {src: 'img/Asset_1.svg', width: 267.02, height: 218.31},
   {src: 'img/Asset_11.svg', width: 204.36, height: 375.54},
+]
+
+const images = [
   {src: 'img/Asset_12.svg', width: 252.37, height: 254.81},
   {src: 'img/Asset_13.svg', width: 262.87, height: 364.2},
   {src: 'img/Asset_14.svg', width: 256.19, height: 365.41},
@@ -54,6 +57,20 @@ function getImage(img) {
 						<img src="${img.src}" data-image-url="https://ido77777.github.io/idotest/${img.src}">
 			</div>`
 }
+function getImage(img) {
+  return `<div class="draggable-item image-box">
+          <img src="${img.src}" 
+           data-image-url="https://ido77777.github.io/idotest/${img.src}">
+	   </div>`
+}
+
+function getLine(line) {
+  return `<div class="draggable-item line-box">
+          <img src="${line.src}" 
+           data-image-url="https://ido77777.github.io/idotest/${img.src}"
+           status="line">
+           </div>`
+}
 
 function addShapes(container) {
   container.innerHTML += `<div class="shape draggable-item organization"
@@ -72,6 +89,10 @@ function addShapes(container) {
 
 function addImages(container) {
   container.innerHTML += images.map((i) => getImage(i)).join('')
+}
+
+function addLines(container) {
+  container.innerHTML += images.map((i) => getLine(i)).join('')
 }
 
 function createImage(canvasX, canvasY, url) {
@@ -100,34 +121,105 @@ function createShape(canvasX, canvasY, color, text, stype, sopacity) {
   })
 }
 
+function createLine(canvasX, canvasY) {
+  return miro.board.widgets.create({
+    type: 'line',
+    startPosition:{
+      x: canvasX,
+      y: canvasY,
+    },
+    endPosition:{
+      x: canvasX + 100,
+      y: canvasY + 100,
+    },
+    style: {
+      lineColor: '#fff',
+      lineEndStyle: 8, //filled_arrow
+      lineStyle: 2, //実線
+      lineType: 1, //曲がり度
+    },
+  })
+}
+
 function bootstrap() {
   const container = document.getElementById('container')
   addShapes(container)
+  addLines(container)
   addImages(container)
 
   let currentImageUrl
+  let currentShapeText
   const imageOptions = {
     draggableItemSelector: 'img',
     onClick: async (targetElement) => {
       const url = targetElement.getAttribute('data-image-url')
-      const widget = (await createImage(0, 0, url))[0]
-      miro.board.viewport.zoomToObject(widget)
+      const status = targetElement.getAttribute('status')
+        if (status = "line"){
+          const widget = (await createShape(0, 0, color, text))[0]
+          miro.board.viewport.zoomToObject(widget)
+        }else{
+          const widget = (await createImage(0, 0, url))[0]
+          miro.board.viewport.zoomToObject(widget)
+        }
     },
     getDraggableItemPreview: (targetElement) => {
       //drag-started
-      currentImageUrl = targetElement.getAttribute('data-image-url')
-      return {
-        width: 100,
-        height: 100,
-        url: currentImageUrl,
-      }
+      const status = targetElement.getAttribute('status')
+      if (status = "line"){
+        currentShapeText = targetElement.innerText
+        return {
+          url: `data:image/svg+xml,%3Csvg width='140' height='140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Crect stroke='null' x='0' y='0' fill='%23${currentShapeColor}' height='140' width='140'/%3E%3C/g%3E%3C/svg%3E`,
+        }
+      }else{
+        currentImageUrl = targetElement.getAttribute('data-image-url')
+        return {
+          width: 100,
+          height: 100,
+          url: currentImageUrl,
+        }
+      }    
     },
     onDrop: (canvasX, canvasY) => {
       console.log('onDrop 1')
-      createImage(canvasX, canvasY, currentImageUrl)
+      const status = targetElement.getAttribute('status')
+      if (status = "line"){
+        createLine(canvasX, canvasY)
+      }else{
+        createImage(canvasX, canvasY, currentImageUrl)
+      }
     },
   }
   miro.board.ui.initDraggableItemsContainer(container, imageOptions)
+	
+// function bootstrap() {
+//   const container = document.getElementById('container')
+//   addShapes(container)
+//   addLines(container)
+//   addImages(container)
+
+//   let currentImageUrl
+//   const imageOptions = {
+//     draggableItemSelector: 'img',
+//     onClick: async (targetElement) => {
+//       const url = targetElement.getAttribute('data-image-url')
+//       const widget = (await createImage(0, 0, url))[0]
+//       miro.board.viewport.zoomToObject(widget)
+//     },
+//     getDraggableItemPreview: (targetElement) => {
+//       //drag-started
+//       currentImageUrl = targetElement.getAttribute('data-image-url')
+//       return {
+//         width: 100,
+//         height: 100,
+//         url: currentImageUrl,
+//       }
+//     },
+//     onDrop: (canvasX, canvasY) => {
+//       console.log('onDrop 1')
+//       createImage(canvasX, canvasY, currentImageUrl)
+//     },
+//   }
+//   miro.board.ui.initDraggableItemsContainer(container, imageOptions)
 
   let currentShapeColor
   let currentShapeText
