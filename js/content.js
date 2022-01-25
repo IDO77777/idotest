@@ -64,7 +64,7 @@ function getLine(line) {
           <img src="${line.src}" 
            data-image-url="https://ido77777.github.io/idotest/${img.src}"
            status="line">
-           </div>`
+          </div>`
 }
 
 function addShapes(container) {
