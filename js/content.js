@@ -69,21 +69,21 @@ function addShapes(container) {
 			       工程
 			  </div>
                           <div class="line draggable-item mline"
-			       lineStartStyle = 0 
-			       lineEndStyle = 8 
-			       lineStyle = 2>
+			       lineStartStyle=0 
+			       lineEndStyle=8 
+			       lineStyle=2>
 			       M
 			  </div>
 	                  <div class="line draggable-item jline"
-			       lineStartStyle = 8
-			       lineEndStyle = 0
-			       lineStyle = 1>
+			       lineStartStyle=8
+			       lineEndStyle=0
+			       lineStyle=1>
 			       J
 			  </div>
 		          <div class="line draggable-item lline"
-			       lineStartStyle = 8 
-			       lineEndStyle = 8 
-			       lineStyle = 2>
+			       lineStartStyle=8 
+			       lineEndStyle=8 
+			       lineStyle=2>
 			       L
 			  </div>`
 }
