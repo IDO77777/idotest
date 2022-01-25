@@ -67,19 +67,19 @@ function addShapes(container) {
 			       shape-type=7 //ROUNDER:角が丸い四角形
 			       shape-opacity=0.2>
 			       工程
-			  </div>`
+			  </div>
                           <div class="line draggable-item mline"
 			       lineStartStyle = 0 
 			       lineEndStyle = 8 
 			       lineStyle = 2>
 			       M
-			  </div>`
+			  </div>
 	                  <div class="line draggable-item jline"
 			       lineStartStyle = 8
 			       lineEndStyle = 0
 			       lineStyle = 1>
 			       J
-			  </div>`
+			  </div>
 		          <div class="line draggable-item lline"
 			       lineStartStyle = 8 
 			       lineEndStyle = 8 
