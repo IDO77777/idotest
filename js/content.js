@@ -51,8 +51,8 @@ const images = [
 
 function getImage(img) {
   return `<div class="draggable-item image-box">
-						<img src="${img.src}" data-image-url="https://ido77777.github.io/idotest/${img.src}">
-			</div>`
+          <img src="${img.src}" data-image-url="https://ido77777.github.io/idotest/${img.src}">
+	  </div>`
 }
 
 function addShapes(container) {
@@ -67,6 +67,24 @@ function addShapes(container) {
 			       shape-type=7 //ROUNDER:角が丸い四角形
 			       shape-opacity=0.2>
 			       工程
+			  </div>`
+                          <div class="line draggable-item mline"
+			       lineStartStyle = 0 
+			       lineEndStyle = 8 
+			       lineStyle = 2>
+			       M
+			  </div>`
+	                  <div class="line draggable-item jline"
+			       lineStartStyle = 8
+			       lineEndStyle = 0
+			       lineStyle = 1>
+			       J
+			  </div>`
+		          <div class="line draggable-item lline"
+			       lineStartStyle = 8 
+			       lineEndStyle = 8 
+			       lineStyle = 2>
+			       L
 			  </div>`
 }
 
@@ -96,6 +114,27 @@ function createShape(canvasX, canvasY, color, text, stype, sopacity) {
       borderColor: '#000', //'transparent',
       textColor: '#000',
       shapeType: stype,
+    },
+  })
+}
+
+function createLine(canvasX, canvasY, sstyle, estyle, linestyle) {
+  return miro.board.widgets.create({
+    type: 'line',
+    startPosition:{
+      x: canvasX,
+      y: canvasY,
+    },
+    endPosition:{
+      x: canvasX + 100,
+      y: canvasY + 100,
+    },
+    style: {
+      lineColor: '#fff',
+      lineStartStyle: sstyle,
+      lineEndStyle: estyle, //filled_arrow=8
+      lineStyle: linestyle, //実線=2 , 点線=1
+      lineType: 1, //曲がり度
     },
   })
 }
@@ -158,6 +197,36 @@ function bootstrap() {
     },
   }
   miro.board.ui.initDraggableItemsContainer(container, shapeOptions)
+	
+	
+	
+  //線
+  let currentlineStartStyle
+  let currentlineEndStyle
+  let currentlineStyle
+  const lineOptions = {
+    draggableItemSelector: '.line',
+    onClick: async (targetElement) => {
+      const sstyle = targetElement.getAttribute('lineStartStyle')
+      const estyle = targetElement.getAttribute('lineEndStyle')
+      const linestyle = targetElement.getAttribute('lineStyle')
+      const widget = (await createLine(0, 0, sstyle, estyle, linestyle))[0]
+      miro.board.viewport.zoomToObject(widget)
+    },
+    getDraggableItemPreview: (targetElement) => {
+      const currentlineStartStyle = targetElement.getAttribute('lineStartStyle')
+      const currentlineEndStyle = targetElement.getAttribute('lineEndStyle')
+      const currentlineStyle = targetElement.getAttribute('lineStyle')
+      return {
+        url: `data:image/svg+xml,%3Csvg width='140' height='140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Crect stroke='null' x='0' y='0' fill='%23${currentlineStartStyle}' height='140' width='140'/%3E%3C/g%3E%3C/svg%3E`,
+      }
+    },
+    onDrop: (canvasX, canvasY) => {
+      console.log('onDrop 3')
+      createLine(0, 0, currentlineStartStyle, currentlineEndStyle, currentlineStyle))[0]
+    },
+  }
+  miro.board.ui.initDraggableItemsContainer(container, lineOptions)	
 }
 
 miro.onReady(bootstrap)
