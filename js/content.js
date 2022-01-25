@@ -223,7 +223,7 @@ function bootstrap() {
     },
     onDrop: (canvasX, canvasY) => {
       console.log('onDrop 3')
-      createLine(0, 0, currentlineStartStyle, currentlineEndStyle, currentlineStyle))[0]
+      createLine(0, 0, currentlineStartStyle, currentlineEndStyle, currentlineStyle)
     },
   }
   miro.board.ui.initDraggableItemsContainer(container, lineOptions)	
