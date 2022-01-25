@@ -54,14 +54,9 @@ const images = [
 
 function getImage(img) {
   return `<div class="draggable-item image-box">
-						<img src="${img.src}" data-image-url="https://ido77777.github.io/idotest/${img.src}">
-			</div>`
-}
-function getImage(img) {
-  return `<div class="draggable-item image-box">
           <img src="${img.src}" 
            data-image-url="https://ido77777.github.io/idotest/${img.src}">
-	   </div>`
+	  </div>`
 }
 
 function getLine(line) {
