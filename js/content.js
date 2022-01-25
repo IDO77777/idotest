@@ -90,11 +90,11 @@ function createShape(canvasX, canvasY, color, text, stype, sopacity) {
     x: canvasX,
     y: canvasY,
     style: {
-      textColor: '#fff',
+      textColor: '#000',
       backgroundColor: '#' + color,
       backgroundOpacity: sopacity,
-      borderColor: 'black', //'transparent',
-      textColor: 'black',
+      borderColor: '#000', //'transparent',
+      textColor: '#000',
       shapeType: stype,
     },
   })
