@@ -56,7 +56,18 @@ function getImage(img) {
 }
 
 function addShapes(container) {
-  container.innerHTML += `<div class="shape draggable-item organization" data-color="0ca788">Organization</div><div class="shape draggable-item process" data-color="f24726">Process</div>`
+  container.innerHTML += `<div class="shape draggable-item organization"
+                               data-color="ffffff"
+			       shape-type=16
+			       shape-opacity=0.2>
+			       組織
+			  </div>
+                          <div class="shape draggable-item process"
+			       data-color="d3d3d3"
+			       shape-type=16
+			       shape-opacity=0.2>
+			       工程
+			  </div>`
 }
 
 function addImages(container) {
@@ -72,7 +83,7 @@ function createImage(canvasX, canvasY, url) {
   })
 }
 
-function createShape(canvasX, canvasY, color, text) {
+function createShape(canvasX, canvasY, color, text, stype, sopacity) {
   return miro.board.widgets.create({
     type: 'shape',
     text: text,
@@ -81,7 +92,9 @@ function createShape(canvasX, canvasY, color, text) {
     style: {
       textColor: '#fff',
       backgroundColor: '#' + color,
+      backgroundOpacity: sopacity,
       borderColor: 'transparent',
+      shapeType: stype,
     },
   })
 }
@@ -122,7 +135,9 @@ function bootstrap() {
     onClick: async (targetElement) => {
       const color = targetElement.getAttribute('data-color')
       const text = targetElement.innerText
-      const widget = (await createShape(0, 0, color, text))[0]
+      const stype = targetElement.getAttribute('shape-type')
+      const sopacity = targetElement.getAttribute('shape-opacity')
+      const widget = (await createShape(0, 0, color, text, stype, sopacity))[0]
       miro.board.viewport.zoomToObject(widget)
     },
     getDraggableItemPreview: (targetElement) => {
