@@ -62,7 +62,7 @@ function getImage(img) {
 function getLine(line) {
   return `<div class="draggable-item line-box">
           <img src="${line.src}" 
-           data-image-url="https://ido77777.github.io/idotest/${img.src}"
+           data-image-url="https://ido77777.github.io/idotest/${line.src}"
            status="line">
           </div>`
 }
@@ -87,7 +87,7 @@ function addImages(container) {
 }
 
 function addLines(container) {
-  container.innerHTML += images.map((i) => getLine(i)).join('')
+  container.innerHTML += lines.map((i) => getLine(i)).join('')
 }
 
 function createImage(canvasX, canvasY, url) {
