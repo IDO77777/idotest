@@ -138,7 +138,7 @@ function createLine(canvasX, canvasY, sstyle, estyle, lstyle) {
       lineStartStyle: sstyle,
       lineEndStyle: estyle, //filled_arrow=8
       lineStyle: lstyle, //実線=2 , 点線=1
-      lineType: 1, //曲がり度
+      lineType: 0, //曲がり度
     },
   })
 }
