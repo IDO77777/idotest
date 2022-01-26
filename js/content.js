@@ -72,21 +72,21 @@ function addShapes(container) {
 
 function addLines(container) {
   container.innerHTML += `<div class="line draggable-item mline"
-			        lineStartStyle=0 
-			        lineEndStyle=8 
-			        lineStyle=2>
+			        line-start=0 
+			        line-end=8 
+			        line-style=2>
 			        M
 			   </div>
 	                   <div class="line draggable-item jline"
-			        lineStartStyle=8
-			        lineEndStyle=0
-			        lineStyle=1>
+			        line-start=8
+			        line-end=0
+			        line-style=1>
 			        J
 			   </div>
 		           <div class="line draggable-item lline"
-			        lineStartStyle=8 
-			        lineEndStyle=8 
-			        lineStyle=2>
+			        line-start=8 
+			        line-end=8 
+			        line-style=2>
 			        L
 			   </div>`
 }
@@ -121,7 +121,7 @@ function createShape(canvasX, canvasY, color, text, stype, sopacity) {
   })
 }
 
-function createLine(canvasX, canvasY, sstyle, estyle, linestyle) {
+function createLine(canvasX, canvasY, sstyle, estyle, lstyle) {
   return miro.board.widgets.create({
     type: 'line',
     startPosition:{
@@ -136,8 +136,8 @@ function createLine(canvasX, canvasY, sstyle, estyle, linestyle) {
       lineColor: '#000',
       lineThickness: 3,//厚さ
       lineStartStyle: sstyle,
-      lineEndStyle: 8,//estyle, //filled_arrow=8
-      lineStyle: linestyle, //実線=2 , 点線=1
+      lineEndStyle: estyle, //filled_arrow=8
+      lineStyle: lstyle, //実線=2 , 点線=1
       lineType: 1, //曲がり度
     },
   })
@@ -212,16 +212,16 @@ function bootstrap() {
   const lineOptions = {
     draggableItemSelector: '.line',
     onClick: async (targetElement) => {
-      const sstyle = targetElement.getAttribute('lineStartStyle')
-      const estyle = targetElement.getAttribute('lineEndStyle')
-      const linestyle = targetElement.getAttribute('lineStyle')
+      const sstyle = targetElement.getAttribute('line-start')
+      const estyle = targetElement.getAttribute('line-end')
+      const linestyle = targetElement.getAttribute('line-style')
       const widget = (await createLine(0, 0, sstyle, estyle, linestyle))[0]
       miro.board.viewport.zoomToObject(widget)
     },
     getDraggableItemPreview: (targetElement) => {
-      const currentlineStartStyle = targetElement.getAttribute('lineStartStyle')
-      const currentlineEndStyle = targetElement.getAttribute('lineEndStyle')
-      const currentlineStyle = targetElement.getAttribute('lineStyle')
+      const currentlineStartStyle = targetElement.getAttribute('line-start')
+      const currentlineEndStyle = targetElement.getAttribute('line-end')
+      const currentlineStyle = targetElement.getAttribute('line-style')
       return {
         url: `data:image/svg+xml,%3Csvg width='140' height='140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Crect stroke='null' x='0' y='0' fill='%23${currentlineStartStyle}' height='140' width='140'/%3E%3C/g%3E%3C/svg%3E`,
       }
