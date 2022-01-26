@@ -133,7 +133,8 @@ function createLine(canvasX, canvasY, sstyle, estyle, linestyle) {
       y: canvasY + 100,
     },
     style: {
-      lineColor: '#fff',
+      lineColor: '#000',
+      lineThickness: 5,//厚さ
       lineStartStyle: sstyle,
       lineEndStyle: estyle, //filled_arrow=8
       lineStyle: linestyle, //実線=2 , 点線=1
