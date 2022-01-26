@@ -67,25 +67,28 @@ function addShapes(container) {
 			       shape-type=7 //ROUNDER:角が丸い四角形
 			       shape-opacity=0.2>
 			       工程
-			  </div>
-                          <div class="line draggable-item mline"
-			       lineStartStyle=0 
-			       lineEndStyle=8 
-			       lineStyle=2>
-			       M
-			  </div>
-	                  <div class="line draggable-item jline"
-			       lineStartStyle=8
-			       lineEndStyle=0
-			       lineStyle=1>
-			       J
-			  </div>
-		          <div class="line draggable-item lline"
-			       lineStartStyle=8 
-			       lineEndStyle=8 
-			       lineStyle=2>
-			       L
 			  </div>`
+}
+
+function addLines(container) {
+  container.innerHTML += `<div class="line draggable-item mline"
+			        lineStartStyle=0 
+			        lineEndStyle=8 
+			        lineStyle=2>
+			        M
+			   </div>
+	                   <div class="line draggable-item jline"
+			        lineStartStyle=8
+			        lineEndStyle=0
+			        lineStyle=1>
+			        J
+			   </div>
+		           <div class="line draggable-item lline"
+			        lineStartStyle=8 
+			        lineEndStyle=8 
+			        lineStyle=2>
+			        L
+			   </div>`
 }
 
 function addImages(container) {
@@ -142,6 +145,7 @@ function createLine(canvasX, canvasY, sstyle, estyle, linestyle) {
 function bootstrap() {
   const container = document.getElementById('container')
   addShapes(container)
+  addLines(container)
   addImages(container)
 
   let currentImageUrl
