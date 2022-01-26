@@ -219,9 +219,9 @@ function bootstrap() {
       miro.board.viewport.zoomToObject(widget)
     },
     getDraggableItemPreview: (targetElement) => {
-      const currentlineStartStyle = targetElement.getAttribute('line-start')
-      const currentlineEndStyle = targetElement.getAttribute('line-end')
-      const currentlineStyle = targetElement.getAttribute('line-style')
+      currentlineStartStyle = targetElement.getAttribute('line-start')
+      currentlineEndStyle = targetElement.getAttribute('line-end')
+      currentlineStyle = targetElement.getAttribute('line-style')
       return {
         url: `data:image/svg+xml,%3Csvg width='140' height='140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Crect stroke='null' x='0' y='0' fill='%23${currentlineStartStyle}' height='140' width='140'/%3E%3C/g%3E%3C/svg%3E`,
       }
