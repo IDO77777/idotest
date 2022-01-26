@@ -130,13 +130,13 @@ function createLine(canvasX, canvasY, sstyle, estyle, linestyle) {
     },
     endPosition:{
       x: canvasX + 100,
-      y: canvasY + 100,
+      y: canvasY,
     },
     style: {
       lineColor: '#000',
-      lineThickness: 5,//厚さ
+      lineThickness: 3,//厚さ
       lineStartStyle: sstyle,
-      lineEndStyle: estyle, //filled_arrow=8
+      lineEndStyle: 8//estyle, //filled_arrow=8
       lineStyle: linestyle, //実線=2 , 点線=1
       lineType: 1, //曲がり度
     },
@@ -228,7 +228,7 @@ function bootstrap() {
     },
     onDrop: (canvasX, canvasY) => {
       console.log('onDrop 3')
-      createLine(0, 0, currentlineStartStyle, currentlineEndStyle, currentlineStyle)
+      createLine(canvasX, canvasY, currentlineStartStyle, currentlineEndStyle, currentlineStyle)
     },
   }
   miro.board.ui.initDraggableItemsContainer(container, lineOptions)	
