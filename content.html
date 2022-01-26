@@ -57,21 +57,23 @@
       .draggable-item.mline {
         background-color: #ffffff;
         border: solid 3px #ffffff;
-        //border-radius: 5px;
-        height: 10px;
-        width: 20px;
+        border-radius: 5px;
+      }
+      
+      .draggable-item.mline::after {
+        height: 1px;
+        width: 15px;
         background-color: #11b2e8;
         position:  relative;
         padding: 32px; 
       }
-      
-       .draggable-item.mline::after {
-        content:  '';
+       .draggable-item.mline::after::after {
         width: 0;
         height: 0;
         border-style: solid;
-        border-width: 10px 0 10px 15px;
-        border-color: transparent transparent transparent #11b2e8;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 15px solid #555555;
         position:  absolute;
         top: -50%;
         left: 100%;
