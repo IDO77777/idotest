@@ -9,6 +9,17 @@
         margin: 0;
         padding: 0;
       }
+      
+      .rtb-sidebar-caption {
+        font-size: 14px;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.8);
+        padding: 24px 0 0 24px;
+      }
+      .tip {
+        color: #cccccc;
+        margin: 20px 0 0 26px;
+      }
 
       #container {
         height: 100%;
@@ -96,9 +107,12 @@
         max-height: 112px;
         cursor: pointer;
       }
+      
     </style>
   </head>
   <body>
+    <div class="rtb-sidebar-caption">物と情報の流れ図</div>
+    <div class="tip" id="tip">Select widget to see its textあああ</div>
     <div id="container"></div>
     <script src="https://miro.com/app/static/sdk.1.1.js"></script>
     <script src="content.js"></script>
