@@ -6,8 +6,8 @@ miro.onReady(() => {
     extensionPoints: {
       toolbar: {
         title: '物と情報の流れ図',
-        librarySvgIcon: icon24,
-        toolbarSvgIcon: icon24,
+        librarySvgIcon: icon,
+        toolbarSvgIcon: icon,
         onClick: () => {
           miro.board.ui.openLibrary('sidebar.html', {title: '物と情報の流れ図'})
         }, 
