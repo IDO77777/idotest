@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Drag and drop</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #container {
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
+        padding-top: 32px;
+        box-sizing: border-box;
+      }
+
+      .row {
+        display: flex;
+        flex-direction: row;
+        padding-left: 32px;
+        margin-bottom: 32px;
+      }
+
+      .draggable-item {
+        margin-left: 32px;
+        margin-bottom: 32px;
+        width: 112px;
+        height: 112px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #000;
+        font-size: 18px;
+        font-family: sans-serif;
+      }
+
+      .draggable-item.process {
+        background-color: #d3d3d3;
+        border: solid 3px #000000;
+        border-radius: 15px;
+      }
+
+      .draggable-item.organization {
+        background-color: #ffffff;
+        border: solid 3px #000000;
+        border-radius: 15px;
+      }
+      
+      .draggable-item.mline {
+        background-color: #ffffff;
+        border: solid 3px #ffffff;
+        border-radius: 5px;
+      }
+      
+      .draggable-item.mline::after {
+        height: 1px;
+        width: 15px;
+        background-color: #11b2e8;
+        position:  relative;
+        padding: 32px; 
+      }
+       .draggable-item.mline::after {
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 15px solid #000000;
+        position:  absolute;
+        top: -50%;
+        left: 100%;
+      } 
+      
+      .draggable-item.jline {
+        background-color: #ffffff;
+        border: solid 3px #000000;
+        border-radius: 5px;
+      }
+      
+      .draggable-item.lline {
+        background-color: #ffffff;
+        border: solid 3px #000000;
+        border-radius: 5px;
+      }
+
+      .image-box img {
+        max-width: 112px;
+        max-height: 112px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="https://miro.com/app/static/sdk.1.1.js"></script>
+    <script src="js/content.js"></script>
+  </body>
+</html>
