@@ -9,8 +9,10 @@ miro.onReady(() => {
         librarySvgIcon: icon,
         toolbarSvgIcon: icon,
         onClick: () => {
-          miro.board.ui.openLibrary('sidebar.html', {title: '物と情報の流れ図'})
+          miro.board.ui.openLeftSidebar('sidebar.html', {title: '物と情報の流れ図'})
         }, 
+      },
     },
   })
 })
+
