@@ -134,7 +134,6 @@ function bootstrap() {
         const url = targetElement.getAttribute('data-image-url')
         const widget = (await createImage(0, 0, url))[0]
         miro.board.viewport.zoomToObject(widget)
-      }
       }else if(targetElement.getAttribute('img-type')= 'shape'){
         const color = targetElement.getAttribute('data-color')
         const text = targetElement.innerText
