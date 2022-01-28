@@ -152,11 +152,11 @@ function bootstrap() {
 
 miro.onReady(bootstrap)
 
-function imgwidget(targetElement){
-  const url = targetElement.getAttribute('data-image-url')
-  const widget = (await createImage(0, 0, url))[0]
-  miro.board.viewport.zoomToObject(widget)
-}
+// function imgwidget(targetElement){
+//   const url = targetElement.getAttribute('data-image-url')
+//   const widget = (await createImage(0, 0, url))[0]
+//   miro.board.viewport.zoomToObject(widget)
+// }
 
 function shapewidget(targetElement){
   let currentShapeColor
