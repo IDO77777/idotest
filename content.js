@@ -1,22 +1,22 @@
 const images = [
-  {src: 'img/工程.png', width: 257.34, height: 305.2},
-  {src: 'img/会社・組織.png', width: 249.34, height: 225.69},
-  {src: 'img/物の流れ.png', width: 251.44, height: 270.31},
-  {src: 'img/情報の流れ.png', width: 263.63, height: 246.18},
-  {src: 'img/LT.png', width: 252.37, height: 254.81},
-  {src: 'img/かんばん.png', width: 262.87, height: 364.2},
-  {src: 'img/ロット形式ポスト.png', width: 255, height: 175.65},
-  {src: 'img/物と情報の停滞.png', width: 251.08, height: 234.84},
-  {src: 'img/ストア（店）.png', width: 259.2, height: 181.74},
-  {src: 'img/紙・指示書.png', width: 245.67, height: 174.88},
-  {src: 'img/Eメール.svg', width: 267.02, height: 218.31},
-  {src: 'img/FAX.png', width: 204.36, height: 375.54},
-  {src: 'img/電話.svg', width: 254.62, height: 334.65},
-  {src: 'img/システム・アプリケーション.png', width: 256.19, height: 365.41},
+   {src: 'img/工程.png', width: 257.34, height: 305.2, type: 'shape'},
+//   {src: 'img/会社・組織.png', width: 249.34, height: 225.69},
+   {src: 'img/物の流れ.png', width: 251.44, height: 270.31, type: 'line'},
+//   {src: 'img/情報の流れ.png', width: 263.63, height: 246.18},
+//   {src: 'img/LT.png', width: 252.37, height: 254.81},
+   {src: 'img/かんばん.png', width: 262.87, height: 364.2, type: 'img'},
+//   {src: 'img/ロット形式ポスト.png', width: 255, height: 175.65},
+//   {src: 'img/物と情報の停滞.png', width: 251.08, height: 234.84},
+//   {src: 'img/ストア（店）.png', width: 259.2, height: 181.74},
+//   {src: 'img/紙・指示書.png', width: 245.67, height: 174.88},
+//   {src: 'img/Eメール.svg', width: 267.02, height: 218.31},
+//   {src: 'img/FAX.png', width: 204.36, height: 375.54},
+//   {src: 'img/電話.svg', width: 254.62, height: 334.65},
+//   {src: 'img/システム・アプリケーション.png', width: 256.19, height: 365.41},
 ]
 
 function getImage(img) {
-  return `<div class="draggable-item image-box">
+  return `<div class="draggable-item image-box" img-type="${img.type}">
           <img src="${img.src}" data-image-url="https://ido77777.github.io/idotest/${img.src}">
 	  </div>`
 }
@@ -116,6 +116,20 @@ function bootstrap() {
   addLines(container)
   addImages(container)
 
+  if(targetElement.getAttribute('img-type')= 'img'){
+    imgwidget(targetElement)
+  }else if(targetElement.getAttribute('img-type')= 'shape'){
+    shapewidget(targetElement)
+  }else if(targetElement.getAttribute('img-type')= 'line'){
+    linewidget(targetElement)
+  }else{
+    continue
+  }
+}
+
+miro.onReady(bootstrap)
+
+function imgwidget(targetElement){
   let currentImageUrl
   const imageOptions = {
     draggableItemSelector: 'img',
@@ -139,7 +153,9 @@ function bootstrap() {
     },
   }
   miro.board.ui.initDraggableItemsContainer(container, imageOptions)
+}
 
+function shapewidget(targetElement){
   let currentShapeColor
   let currentShapeText
   let currentShapeType
@@ -170,9 +186,10 @@ function bootstrap() {
     },
   }
   miro.board.ui.initDraggableItemsContainer(container, shapeOptions)
-	
-	
-	
+}
+
+
+function linewidget(targetElement){
   //線
   let currentlineStartStyle
   let currentlineEndStyle
@@ -201,5 +218,3 @@ function bootstrap() {
   }
   miro.board.ui.initDraggableItemsContainer(container, lineOptions)	
 }
-
-miro.onReady(bootstrap)
