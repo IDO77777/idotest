@@ -121,12 +121,15 @@ function bootstrap() {
     draggableItemSelector: 'img',
     onClick: async (targetElement) => {
       if(targetElement.getAttribute('img-type')= 'img'){
-        imgwidget(targetElement)
-      }else if(targetElement.getAttribute('img-type')= 'shape'){
-        shapewidget(targetElement)
-      }else if(targetElement.getAttribute('img-type')= 'line'){
-        linewidget(targetElement)
+        const url = targetElement.getAttribute('data-image-url')
+        const widget = (await createImage(0, 0, url))[0]
+        miro.board.viewport.zoomToObject(widget)
       }
+//       }else if(targetElement.getAttribute('img-type')= 'shape'){
+//         shapewidget(targetElement)
+//       }else if(targetElement.getAttribute('img-type')= 'line'){
+//         linewidget(targetElement)
+//       }
     },
     getDraggableItemPreview: (targetElement) => {
       //drag-started
