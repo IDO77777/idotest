@@ -130,18 +130,19 @@ function bootstrap() {
   const imageOptions = {
     draggableItemSelector: 'img',
     onClick: async (targetElement) => {
-      if(targetElement.getAttribute('img-type')= 'img'){
+      let d_type = targetElement.getAttribute('img-type')
+      if(d_type= 'img'){
         const url = targetElement.getAttribute('data-image-url')
         const widget = (await createImage(0, 0, url))[0]
         miro.board.viewport.zoomToObject(widget)
-      }else if(targetElement.getAttribute('img-type')= 'shape'){
+      }else if(d_type= 'shape'){
         const color = targetElement.getAttribute('data-color')
         const text = targetElement.innerText
         const stype = targetElement.getAttribute('shape-type')
         const sopacity = targetElement.getAttribute('shape-opacity')
         const widget = (await createShape(0, 0, color, text, stype, sopacity))[0]
         miro.board.viewport.zoomToObject(widget)
-      }else if(targetElement.getAttribute('img-type')= 'line'){
+      }else if(d_type= 'line'){
         const sstyle = targetElement.getAttribute('line-start')
         const estyle = targetElement.getAttribute('line-end')
         const linestyle = targetElement.getAttribute('line-style')
@@ -150,7 +151,8 @@ function bootstrap() {
       }
     },
     getDraggableItemPreview: (targetElement) => {
-      if(targetElement.getAttribute('img-type') = 'img'){
+	    let d_type = targetElement.getAttribute('img-type')
+      if(d_type = 'img'){
         //drag-started
         currentImageUrl = targetElement.getAttribute('data-image-url')
         return {
@@ -158,7 +160,7 @@ function bootstrap() {
           height: 100,
           url: currentImageUrl,
         }   
-      }else if(targetElement.getAttribute('img-type') = 'shape'){
+      }else if(d_type = 'shape'){
          currentShapeColor = targetElement.getAttribute('data-color')
          currentShapeText = targetElement.innerText
          currentShapeType = targetElement.getAttribute('shape-type')
@@ -167,7 +169,7 @@ function bootstrap() {
            url: `data:image/svg+xml,%3Csvg width='140' height='140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Crect stroke='null' x='0' y='0' fill='%23${currentShapeColor}' height='140' width='140'/%3E%3C/g%3E%3C/svg%3E`,
            //createShape(canvasX, canvasY, currentShapeColor, currentShapeText, currentShapeType, currentShapeOpacity)
          }
-      }else if(targetElement.getAttribute('img-type') = 'line'){
+      }else if(d_type = 'line'){
         currentlineStartStyle = targetElement.getAttribute('line-start')
         currentlineEndStyle = targetElement.getAttribute('line-end')
         currentlineStyle = targetElement.getAttribute('line-style')
