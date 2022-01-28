@@ -1,7 +1,7 @@
 const images = [
-   {src: 'img/工程.png', width: 257.34, height: 305.2, type: 'shape'},
+   {src: 'img/工程.png', width: 257.34, height: 305.2, type: 'img'},
 //   {src: 'img/会社・組織.png', width: 249.34, height: 225.69},
-   {src: 'img/物の流れ.png', width: 251.44, height: 270.31, type: 'line'},
+   {src: 'img/物の流れ.png', width: 251.44, height: 270.31, type: 'img'},
 //   {src: 'img/情報の流れ.png', width: 263.63, height: 246.18},
 //   {src: 'img/LT.png', width: 252.37, height: 254.81},
    {src: 'img/かんばん.png', width: 262.87, height: 364.2, type: 'img'},
@@ -115,26 +115,18 @@ function bootstrap() {
   addShapes(container)
   addLines(container)
   addImages(container)
-
-  if(targetElement.getAttribute('img-type')= 'img'){
-    imgwidget(targetElement)
-  }else if(targetElement.getAttribute('img-type')= 'shape'){
-    shapewidget(targetElement)
-  }else if(targetElement.getAttribute('img-type')= 'line'){
-    linewidget(targetElement)
-  }
-}
-
-miro.onReady(bootstrap)
-
-function imgwidget(targetElement){
+	
   let currentImageUrl
   const imageOptions = {
     draggableItemSelector: 'img',
     onClick: async (targetElement) => {
-      const url = targetElement.getAttribute('data-image-url')
-      const widget = (await createImage(0, 0, url))[0]
-      miro.board.viewport.zoomToObject(widget)
+      if(targetElement.getAttribute('img-type')= 'img'){
+        imgwidget(targetElement)
+      }else if(targetElement.getAttribute('img-type')= 'shape'){
+        shapewidget(targetElement)
+      }else if(targetElement.getAttribute('img-type')= 'line'){
+        linewidget(targetElement)
+      }
     },
     getDraggableItemPreview: (targetElement) => {
       //drag-started
@@ -151,6 +143,16 @@ function imgwidget(targetElement){
     },
   }
   miro.board.ui.initDraggableItemsContainer(container, imageOptions)
+
+  
+}
+
+miro.onReady(bootstrap)
+
+function imgwidget(targetElement){
+  const url = targetElement.getAttribute('data-image-url')
+  const widget = (await createImage(0, 0, url))[0]
+  miro.board.viewport.zoomToObject(widget)
 }
 
 function shapewidget(targetElement){
