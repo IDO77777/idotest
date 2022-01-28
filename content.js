@@ -122,8 +122,9 @@ function bootstrap() {
     shapewidget(targetElement)
   }else if(targetElement.getAttribute('img-type')= 'line'){
     linewidget(targetElement)
-  }else
+  }else{
     continue;
+  }
 }
 
 miro.onReady(bootstrap)
