@@ -115,8 +115,18 @@ function bootstrap() {
   addShapes(container)
   addLines(container)
   addImages(container)
-	
+  //画像
   let currentImageUrl
+  //図形
+  let currentShapeColor
+  let currentShapeText
+  let currentShapeType
+  let currentShapeOpacity
+  //線
+  let currentlineStartStyle
+  let currentlineEndStyle
+  let currentlineStyle
+  
   const imageOptions = {
     draggableItemSelector: 'img',
     onClick: async (targetElement) => {
@@ -125,22 +135,50 @@ function bootstrap() {
         const widget = (await createImage(0, 0, url))[0]
         miro.board.viewport.zoomToObject(widget)
       }
-//       }else if(targetElement.getAttribute('img-type')= 'shape'){
-//         shapewidget(targetElement)
-//       }else if(targetElement.getAttribute('img-type')= 'line'){
-//         linewidget(targetElement)
-//       }
+      }else if(targetElement.getAttribute('img-type')= 'shape'){
+        const color = targetElement.getAttribute('data-color')
+        const text = targetElement.innerText
+        const stype = targetElement.getAttribute('shape-type')
+        const sopacity = targetElement.getAttribute('shape-opacity')
+        const widget = (await createShape(0, 0, color, text, stype, sopacity))[0]
+        miro.board.viewport.zoomToObject(widget)
+      }else if(targetElement.getAttribute('img-type')= 'line'){
+        const sstyle = targetElement.getAttribute('line-start')
+        const estyle = targetElement.getAttribute('line-end')
+        const linestyle = targetElement.getAttribute('line-style')
+        const widget = (await createLine(0, 0, sstyle, estyle, linestyle))[0]
+        miro.board.viewport.zoomToObject(widget)
+      }
     },
     getDraggableItemPreview: (targetElement) => {
-      //drag-started
-      currentImageUrl = targetElement.getAttribute('data-image-url')
-      return {
-        width: 100,
-        height: 100,
-        url: currentImageUrl,
+      if(targetElement.getAttribute('img-type') = 'img'){
+        //drag-started
+        currentImageUrl = targetElement.getAttribute('data-image-url')
+        return {
+          width: 100,
+          height: 100,
+          url: currentImageUrl,
+        }   
+      }else if(targetElement.getAttribute('img-type') = 'shape'){
+         currentShapeColor = targetElement.getAttribute('data-color')
+         currentShapeText = targetElement.innerText
+         currentShapeType = targetElement.getAttribute('shape-type')
+         currentShapeOpacity = targetElement.getAttribute('shape-opacity')
+         return {
+           url: `data:image/svg+xml,%3Csvg width='140' height='140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Crect stroke='null' x='0' y='0' fill='%23${currentShapeColor}' height='140' width='140'/%3E%3C/g%3E%3C/svg%3E`,
+           //createShape(canvasX, canvasY, currentShapeColor, currentShapeText, currentShapeType, currentShapeOpacity)
+         }
+      }else if(targetElement.getAttribute('img-type') = 'line'){
+        currentlineStartStyle = targetElement.getAttribute('line-start')
+        currentlineEndStyle = targetElement.getAttribute('line-end')
+        currentlineStyle = targetElement.getAttribute('line-style')
+        return {
+          url: `data:image/svg+xml,%3Csvg width='140' height='140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Crect stroke='null' x='0' y='0' fill='%23${currentlineStartStyle}' height='140' width='140'/%3E%3C/g%3E%3C/svg%3E`,
+        }
       }
     },
     onDrop: (canvasX, canvasY) => {
+	    
       console.log('onDrop 1')
       createImage(canvasX, canvasY, currentImageUrl)
     },
