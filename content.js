@@ -4,7 +4,7 @@ const images = [
    {src: 'img/物の流れ.png', width: 251.44, height: 270.31, type: 'img'},
 //   {src: 'img/情報の流れ.png', width: 263.63, height: 246.18},
 //   {src: 'img/LT.png', width: 252.37, height: 254.81},
-   {src: 'img/かんばん.png', width: 262.87, height: 364.2, type: 'img'},
+   {src: 'img/かんばん.svg', width: 262.87, height: 364.2, type: 'img'},
 //   {src: 'img/ロット形式ポスト.png', width: 255, height: 175.65},
 //   {src: 'img/物と情報の停滞.png', width: 251.08, height: 234.84},
 //   {src: 'img/ストア（店）.png', width: 259.2, height: 181.74},
