@@ -123,9 +123,26 @@ function bootstrap() {
   const imageOptions = {
     draggableItemSelector: 'img',
     onClick: async (targetElement) => {
-      const url = targetElement.getAttribute('data-image-url')
-      const widget = (await createImage(0, 0, url))[0]
-      miro.board.viewport.zoomToObject(widget)
+      if(targetElement.getAttribute('type') = 'img'){
+        const url = targetElement.getAttribute('data-image-url')
+        const widget = (await createImage(0, 0, url))[0]
+      }else if(targetElement.getAttribute('type') = 'shape'){
+        const color = targetElement.getAttribute('background-color')
+      const text = targetElement.innerText
+      const stype = targetElement.getAttribute('shape-type')
+      const sopacity = targetElement.getAttribute('shape-opacity')
+      const widget = (await createShape(0, 0, color, text, stype, sopacity))[0]
+      }else if(targetElement.getAttribute('type') = 'line'){
+        const sstyle = targetElement.getAttribute('line-start')
+      const estyle = targetElement.getAttribute('line-end')
+      const linestyle = targetElement.getAttribute('line-style')
+      const widget = (await createLine(0, 0, sstyle, estyle, linestyle))[0]
+      }
+	    
+	    
+//       const url = targetElement.getAttribute('data-image-url')
+//       const widget = (await createImage(0, 0, url))[0]
+//       miro.board.viewport.zoomToObject(widget)
     },
     getDraggableItemPreview: (targetElement) => {
       //drag-started
@@ -141,7 +158,7 @@ function bootstrap() {
       createImage(canvasX, canvasY, currentImageUrl)
     },
   }
-  //miro.board.ui.initDraggableItemsContainer(container, imageOptions)
+  miro.board.ui.initDraggableItemsContainer(container, imageOptions)
 
   let currentShapeColor
   let currentShapeText
@@ -172,7 +189,7 @@ function bootstrap() {
       createShape(canvasX, canvasY, currentShapeColor, currentShapeText, currentShapeType, currentShapeOpacity)
     },
   }
-  //miro.board.ui.initDraggableItemsContainer(container, shapeOptions)
+  miro.board.ui.initDraggableItemsContainer(container, shapeOptions)
 	
 	
 	
@@ -202,16 +219,16 @@ function bootstrap() {
       createLine(canvasX, canvasY, currentlineStartStyle, currentlineEndStyle, currentlineStyle)
     },
   }
-  //miro.board.ui.initDraggableItemsContainer(container, lineOptions)	
+  miro.board.ui.initDraggableItemsContainer(container, lineOptions)	
 	
 	
-  if(targetElement.getAttribute('type') = 'img'){
-    miro.board.ui.initDraggableItemsContainer(container, imageOptions)
-  }else if(targetElement.getAttribute('type') = 'shape'){
-    miro.board.ui.initDraggableItemsContainer(container, shapeOptions)
-  }else if(targetElement.getAttribute('type') = 'line'){
-    miro.board.ui.initDraggableItemsContainer(container, lineOptions)
-  }
+//   if(targetElement.getAttribute('type') = 'img'){
+//     miro.board.ui.initDraggableItemsContainer(container, imageOptions)
+//   }else if(targetElement.getAttribute('type') = 'shape'){
+//     miro.board.ui.initDraggableItemsContainer(container, shapeOptions)
+//   }else if(targetElement.getAttribute('type') = 'line'){
+//     miro.board.ui.initDraggableItemsContainer(container, lineOptions)
+//   }
 }
 
 miro.onReady(bootstrap)
