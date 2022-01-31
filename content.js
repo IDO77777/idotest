@@ -24,13 +24,13 @@ function getImage(img) {
 //data-color="ffffff" 白
 //shape-type=7 ROUNDER:角が丸い四角形
 function addShapes(container) {
-  container.innerHTML += `<div class="shape draggable-item aaa"
+  container.innerHTML += `<div class="shape draggable-item organization"
                                background-color="#ffffff"
 			       shape-type=7
 			       shape-opacity=1>
 			       組織
 			  </div>
-                          <div class="shape draggable-item aaa"
+                          <div class="shape draggable-item process"
 			       background-color="#d3d3d3"
 			       shape-type=7
 			       shape-opacity=1>
