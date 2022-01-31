@@ -123,16 +123,16 @@ function bootstrap() {
   const imageOptions = {
     draggableItemSelector: 'img',
     onClick: async (targetElement) => {
-      if(targetElement.getAttribute('type') = 'img'){
+      if(targetElement.getAttribute('type') == 'img'){
         const url = targetElement.getAttribute('data-image-url')
         const widget = (await createImage(0, 0, url))[0]
-      }else if(targetElement.getAttribute('type') = 'shape'){
+      }else if(targetElement.getAttribute('type') == 'shape'){
         const color = targetElement.getAttribute('background-color')
       const text = targetElement.innerText
       const stype = targetElement.getAttribute('shape-type')
       const sopacity = targetElement.getAttribute('shape-opacity')
       const widget = (await createShape(0, 0, color, text, stype, sopacity))[0]
-      }else if(targetElement.getAttribute('type') = 'line'){
+      }else if(targetElement.getAttribute('type') == 'line'){
         const sstyle = targetElement.getAttribute('line-start')
       const estyle = targetElement.getAttribute('line-end')
       const linestyle = targetElement.getAttribute('line-style')
