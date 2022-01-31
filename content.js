@@ -1,9 +1,9 @@
 const images = [
-   {src: 'img/工程名.svg', width: 100, height: 100, type: 'img'},
-   {src: 'img/会社・組織名.svg', width: 100, height: 100, type: 'img'},
-   {src: 'img/物の流れ.svg', width: 100, height: 100, type: 'img'},
-   {src: 'img/情報の流れ.svg', width: 100, height: 100, type: 'img'},
-   {src: 'img/リードタイム.svg', width: 100, height: 100, type: 'img'},
+   {src: 'img/工程名.svg', width: 100, height: 100, type: 'shape'},
+   {src: 'img/会社・組織名.svg', width: 100, height: 100, type: 'shape'},
+   {src: 'img/物の流れ.svg', width: 100, height: 100, type: 'line'},
+   {src: 'img/情報の流れ.svg', width: 100, height: 100, type: 'line'},
+   {src: 'img/リードタイム.svg', width: 100, height: 100, type: 'line'},
    {src: 'img/かんばん.svg', width: 100, height: 100, type: 'img'},
    {src: 'img/ロット形式ポスト.svg', width: 100, height: 100, type: 'img'},
    {src: 'img/物と情報の停滞.svg', width: 100, height: 100, type: 'img'},
@@ -121,11 +121,11 @@ function bootstrap() {
   let currentImageUrl
   const imageOptions = {
     draggableItemSelector: 'img',
-//     onClick: async (targetElement) => {
-//       const url = targetElement.getAttribute('data-image-url')
-//       const widget = (await createImage(0, 0, url))[0]
-//       //miro.board.viewport.zoomToObject(widget)
-//     },
+    onClick: async (targetElement) => {
+      const url = targetElement.getAttribute('data-image-url')
+      const widget = (await createImage(0, 0, url))[0]
+      //miro.board.viewport.zoomToObject(widget)
+    },
     getDraggableItemPreview: (targetElement) => {
       //drag-started
       currentImageUrl = targetElement.getAttribute('data-image-url')
