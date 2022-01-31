@@ -24,13 +24,13 @@ function getImage(img) {
 //data-color="ffffff" 白
 //shape-type=7 ROUNDER:角が丸い四角形
 function addShapes(container) {
-  container.innerHTML += `<div class="shape draggable-item organization"
+  container.innerHTML += `<div class="shape draggable-item"
                                data-color="ffffff"
 			       shape-type=7
 			       shape-opacity=1>
 			       組織
 			  </div>
-                          <div class="shape draggable-item process"
+                          <div class="shape draggable-item"
 			       data-color="d3d3d3"
 			       shape-type=7
 			       shape-opacity=1>
@@ -39,19 +39,19 @@ function addShapes(container) {
 }
 
 function addLines(container) {
-  container.innerHTML += `<div class="line draggable-item mline"
+  container.innerHTML += `<div class="line draggable-item"
 			        line-start=0 
 			        line-end=8 
 			        line-style=2>
 			        M
 			   </div>
-	                   <div class="line draggable-item jline"
+	                   <div class="line draggable-item"
 			        line-start=8
 			        line-end=0
 			        line-style=1>
 			        J
 			   </div>
-		           <div class="line draggable-item lline"
+		           <div class="line draggable-item"
 			        line-start=8 
 			        line-end=8 
 			        line-style=2>
@@ -164,7 +164,7 @@ function bootstrap() {
   let currentShapeType
   let currentShapeOpacity
   const shapeOptions = {
-    draggableItemSelector: '.process ',
+    draggableItemSelector: '.shape ',
     onClick: async (targetElement) => {
       const color = targetElement.getAttribute('data-color')
       const text = targetElement.innerText
