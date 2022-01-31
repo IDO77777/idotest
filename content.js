@@ -1,18 +1,29 @@
 const images = [
-   {src: 'img/工程名.svg', width: 100, height: 100, type: 'shape'},
-   {src: 'img/会社・組織名.svg', width: 100, height: 100, type: 'shape'},
-   {src: 'img/物の流れ.svg', width: 100, height: 100, type: 'line'},
-   {src: 'img/情報の流れ.svg', width: 100, height: 100, type: 'line'},
-   {src: 'img/リードタイム.svg', width: 100, height: 100, type: 'line'},
-   {src: 'img/かんばん.svg', width: 100, height: 100, type: 'img'},
-   {src: 'img/ロット形式ポスト.svg', width: 100, height: 100, type: 'img'},
-   {src: 'img/物と情報の停滞.svg', width: 100, height: 100, type: 'img'},
-   {src: 'img/ストア（店）.svg', width: 100, height: 100, type: 'img'},
-   {src: 'img/紙・指示書.svg', width: 100, height: 100, type: 'img'},
-   {src: 'img/Eメール.svg', width: 100, height: 100, type: 'img'},
-   {src: 'img/FAX.svg', width: 100, height: 100, type: 'img'},
-   {src: 'img/電話.svg', width: 100, height: 100, type: 'img'},
-   {src: 'img/システム・アプリケーション.svg', width: 100, height: 100, type: 'img'},
+//  { src: 'img/工程名.svg', width: 257.34, height: 305.2, type: 'img' },
+//  { src: 'img/会社・組織名.svg', width: 249.34, height: 225.69, type: 'img' },
+//  { src: 'img/物の流れ.svg', width: 251.44, height: 270.31, type: 'img' },
+//  { src: 'img/情報の流れ.svg', width: 263.63, height: 246.18, type: 'img' },
+//  { src: 'img/リードタイム.svg', width: 252.37, height: 254.81, type: 'img' },
+  { src: 'img/かんばん.svg', width: 100, height: 100, type: 'img' },
+  { src: 'img/ロット形式ポスト.svg', width: 100, height: 100, type: 'img' },
+  { src: 'img/物と情報の停滞.svg', width: 100, height: 100, type: 'img' },
+  { src: 'img/ストア（店）.svg', width: 100, height: 100, type: 'img' },
+  { src: 'img/紙・指示書.svg', width: 100, height: 100, type: 'img' },
+  { src: 'img/Eメール.svg', width: 100, height: 100, type: 'img' },
+  { src: 'img/FAX.svg', width: 100, height: 100, type: 'img' },
+  { src: 'img/電話.svg', width: 100, height: 100, type: 'img' },
+  { src: 'img/システム・アプリケーション.svg', width: 100, height: 100, type: 'img' },
+]
+
+const shapes = [
+  { src: 'img/工程名.svg', width: 100, height: 100, type: 'shape', datacolor:'d3d3d3', shapetype:7},
+  { src: 'img/会社・組織名.svg', width: 100, height: 100, type: 'shape', datacolor:'ffffff', shapetype:7},
+]
+
+const lines = [
+  { src: 'img/物の流れ.svg', width: 100, height: 100, type: 'line', linestart:0, lineend:8, linestyle:2},
+  { src: 'img/情報の流れ.svg', width: 100, height: 100, type: 'line', linestart:8, lineend:0, linestyle:1},
+  { src: 'img/リードタイム.svg', width: 100, height: 100, type: 'line', linestart:8, lineend:8, linestyle:2},
 ]
 
 function getImage(img) {
@@ -21,45 +32,27 @@ function getImage(img) {
 	  </div>`
 }
 
-//data-color="ffffff" 白
-//shape-type=7 ROUNDER:角が丸い四角形
-function addShapes(container) {
-  container.innerHTML += `<div class="shape draggable-item organization"
-                               data-color="ffffff"
-			       shape-type=7
-			       shape-opacity=1>
-			       組織
-			  </div>
-                          <div class="shape draggable-item process"
-			       data-color="d3d3d3"
-			       shape-type=7
-			       shape-opacity=1>
-			       工程
-			  </div>`
+//shape-type=7 ：ROUNDER角が丸い四角形
+//shape-opacity  ：不透明度
+function getShape(img) {
+  return `<div class="draggable-item image-box"
+               data-color="${img.datacolor}"
+  			       shape-type="${img.shapetype}"
+  			       shape-opacity=1>
+  			  </div>`
 }
 
-function addLines(container) {
-  container.innerHTML += `<div class="line draggable-item mline"
-			        line-start=0 
-			        line-end=8 
-			        line-style=2>
-			        M
-			   </div>
-	                   <div class="line draggable-item jline"
-			        line-start=8
-			        line-end=0
-			        line-style=1>
-			        J
-			   </div>
-		           <div class="line draggable-item lline"
-			        line-start=8 
-			        line-end=8 
-			        line-style=2>
-			        L
-			   </div>`
+function getLine(img) {
+  return `<div class="line draggable-item mline"
+  			       line-start="${img.linestart}"
+  			       line-end="${img.lineend}" 
+  			       line-style="${img.linestyle}">
+  		    </div>`
 }
 
 function addImages(container) {
+  container.innerHTML += images.map((i) => getImage(i)).join('')
+  container.innerHTML += lines.map((i) => getLine(i)).join('')
   container.innerHTML += images.map((i) => getImage(i)).join('')
 }
 
