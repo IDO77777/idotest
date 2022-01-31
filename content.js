@@ -21,16 +21,18 @@ function getImage(img) {
 	  </div>`
 }
 
+//data-color="ffffff" 白
+//shape-type=7 ROUNDER:角が丸い四角形
 function addShapes(container) {
   container.innerHTML += `<div class="shape draggable-item organization"
-                               data-color="ffffff" //白
-			       shape-type=7 //ROUNDER:角が丸い四角形
+                               data-color="ffffff"
+			       shape-type=7
 			       shape-opacity=1>
 			       組織
 			  </div>
                           <div class="shape draggable-item process"
-			       data-color="d3d3d3" //灰色
-			       shape-type=7 //ROUNDER:角が丸い四角形
+			       data-color="d3d3d3"
+			       shape-type=7
 			       shape-opacity=1>
 			       工程
 			  </div>`
