@@ -51,7 +51,7 @@ function getLine(img) {
 }
 
 function addImages(container) {
-  container.innerHTML += images.map((i) => getImage(i)).join('')
+  container.innerHTML += shapes.map((i) => getShape(i)).join('')
   container.innerHTML += lines.map((i) => getLine(i)).join('')
   container.innerHTML += images.map((i) => getImage(i)).join('')
 }
@@ -107,8 +107,8 @@ function createLine(canvasX, canvasY, sstyle, estyle, lstyle) {
 
 function bootstrap() {
   const container = document.getElementById('container')
-  addShapes(container)
-  addLines(container)
+//   addShapes(container)
+//   addLines(container)
   addImages(container)
 
   let currentImageUrl
