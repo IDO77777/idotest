@@ -25,13 +25,13 @@ function getImage(img) {
 //shape-type=7 ROUNDER:角が丸い四角形
 function addShapes(container) {
   container.innerHTML += `<div class="shape draggable-item"
-                               data-color="ffffff"
+                               background-color="#ffffff"
 			       shape-type=7
 			       shape-opacity=1>
 			       組織
 			  </div>
                           <div class="shape draggable-item"
-			       data-color="d3d3d3"
+			       background-color="#d3d3d3"
 			       shape-type=7
 			       shape-opacity=1>
 			       工程
@@ -81,7 +81,7 @@ function createShape(canvasX, canvasY, color, text, stype, sopacity) {
     width: 100,
     style: {
       textColor: '#000',
-      backgroundColor: '#' + color,
+      backgroundColor: color,
       backgroundOpacity: sopacity,
       borderColor: '#000', //'transparent',
       textColor: '#000',
@@ -166,7 +166,7 @@ function bootstrap() {
   const shapeOptions = {
     draggableItemSelector: '.shape ',
     onClick: async (targetElement) => {
-      const color = targetElement.getAttribute('data-color')
+      const color = targetElement.getAttribute('background-color')
       const text = targetElement.innerText
       const stype = targetElement.getAttribute('shape-type')
       const sopacity = targetElement.getAttribute('shape-opacity')
@@ -174,7 +174,7 @@ function bootstrap() {
       miro.board.viewport.zoomToObject(widget)
     },
     getDraggableItemPreview: (targetElement) => {
-      currentShapeColor = targetElement.getAttribute('data-color')
+      currentShapeColor = targetElement.getAttribute('background-color')
       currentShapeText = targetElement.innerText
       currentShapeType = targetElement.getAttribute('shape-type')
       currentShapeOpacity = targetElement.getAttribute('shape-opacity')
