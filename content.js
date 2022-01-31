@@ -154,7 +154,7 @@ function bootstrap() {
       const stype = targetElement.getAttribute('shape-type')
       const sopacity = targetElement.getAttribute('shape-opacity')
       const widget = (await createShape(0, 0, color, text, stype, sopacity))[0]
-      //miro.board.viewport.zoomToObject(widget)
+      miro.board.viewport.zoomToObject(widget)
     },
     getDraggableItemPreview: (targetElement) => {
       currentShapeColor = targetElement.getAttribute('data-color')
@@ -186,7 +186,7 @@ function bootstrap() {
       const estyle = targetElement.getAttribute('line-end')
       const linestyle = targetElement.getAttribute('line-style')
       const widget = (await createLine(0, 0, sstyle, estyle, linestyle))[0]
-      //miro.board.viewport.zoomToObject(widget)
+      miro.board.viewport.zoomToObject(widget)
     },
     getDraggableItemPreview: (targetElement) => {
       currentlineStartStyle = targetElement.getAttribute('line-start')
