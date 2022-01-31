@@ -78,7 +78,8 @@ function createShape(canvasX, canvasY, color, text, stype, sopacity) {
     text: text,
     x: canvasX,
     y: canvasY,
-    width: 100,
+    width: 50,
+    height: 100,
     style: {
       textColor: '#000',
       backgroundColor: color,
