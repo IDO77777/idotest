@@ -121,11 +121,11 @@ function bootstrap() {
   let currentImageUrl
   const imageOptions = {
     draggableItemSelector: 'img',
-    onClick: async (targetElement) => {
-      const url = targetElement.getAttribute('data-image-url')
-      const widget = (await createImage(0, 0, url))[0]
-      miro.board.viewport.zoomToObject(widget)
-    },
+//     onClick: async (targetElement) => {
+//       const url = targetElement.getAttribute('data-image-url')
+//       const widget = (await createImage(0, 0, url))[0]
+//       //miro.board.viewport.zoomToObject(widget)
+//     },
     getDraggableItemPreview: (targetElement) => {
       //drag-started
       currentImageUrl = targetElement.getAttribute('data-image-url')
@@ -154,7 +154,7 @@ function bootstrap() {
       const stype = targetElement.getAttribute('shape-type')
       const sopacity = targetElement.getAttribute('shape-opacity')
       const widget = (await createShape(0, 0, color, text, stype, sopacity))[0]
-      miro.board.viewport.zoomToObject(widget)
+      //miro.board.viewport.zoomToObject(widget)
     },
     getDraggableItemPreview: (targetElement) => {
       currentShapeColor = targetElement.getAttribute('data-color')
@@ -186,7 +186,7 @@ function bootstrap() {
       const estyle = targetElement.getAttribute('line-end')
       const linestyle = targetElement.getAttribute('line-style')
       const widget = (await createLine(0, 0, sstyle, estyle, linestyle))[0]
-      miro.board.viewport.zoomToObject(widget)
+      //miro.board.viewport.zoomToObject(widget)
     },
     getDraggableItemPreview: (targetElement) => {
       currentlineStartStyle = targetElement.getAttribute('line-start')
